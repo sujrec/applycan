@@ -10,4 +10,24 @@ class adminController extends Controller
     {
         return view('front.dashboard');
     }
+
+    public function search()
+    {
+        return view('front.search');
+    }
+
+    public function application()
+    {
+        return view('front.application');
+    }
+
+    public function applicant()
+    {
+        return view('front.applicant');
+    }
+
+    public function draft()
+    {
+        return view('front.draft');
+    }
 }
