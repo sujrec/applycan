@@ -1,16 +1,16 @@
 @extends('front.layouts.default')
 
-@section('title', 'Draft Applications | ApplyCan')
+@section('title', 'Refund Applications | ApplyCan')
 
 @section('content')
 <div class="tw:max-w-7xl tw:mx-auto tw:px-4 tw:py-8">
 
     {{-- Page Header --}}
     <div class="tw:mb-6">
-        <h1 class="tw:text-xl tw:font-bold tw:text-slate-900">Draft applications</h1>
+        <h1 class="tw:text-xl tw:font-bold tw:text-slate-900">Refund applications</h1>
     </div>
 
-    {{-- Filter Card - 4 Columns per row --}}
+    {{-- Filter Card --}}
     <div class="tw:bg-white tw:rounded-lg tw:border tw:border-slate-200 tw:p-5 tw:mb-6">
         <form action="#" method="GET" class="tw:space-y-4">
 
@@ -37,7 +37,7 @@
                 </select>
             </div>
 
-            {{-- Row 2: 4 Columns (Last one contains Select + Search) --}}
+            {{-- Row 2 --}}
             <div class="tw:grid tw:grid-cols-1 md:tw:grid-cols-4 tw:gap-4">
                 <select name="institution" class="tw:w-full tw:bg-white tw:border tw:border-slate-300 tw:rounded-md tw:px-3 tw:py-2.5 tw:text-sm tw:text-slate-600 focus:tw:border-blue-500 focus:tw:outline-none tw:appearance-none tw:bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M5%207.5L10%2012.5L15%207.5%22%20stroke%3D%22%236B7280%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E')] tw:bg-[length:20px_20px] tw:bg-[right_10px_center] tw:bg-no-repeat">
                     <option value="">Institution</option>
@@ -57,43 +57,93 @@
                             <option value="">Program</option>
                         </select>
                     </div>
-                    <button type="submit" class="tw:bg-[#0056b3] tw:text-white tw:px-6 tw:py-2.5 tw:rounded-md tw:text-sm tw:font-bold hover:tw:bg-blue-800 tw:transition-colors tw:shadow-sm">
+                    <button type="submit" class="tw:bg-[#0056b3] tw:text-white tw:px-6 tw:py-2.5 tw:rounded-md tw:text-sm tw:font-bold hover:tw:bg-blue-800 tw:transition-colors">
                         Search
                     </button>
                 </div>
             </div>
         </form>
 
-        {{-- Table Header --}}
-        <div class="tw:mt-6 tw:overflow-x-auto">
-            <table class="tw:w-full tw:text-left">
+        {{-- Table Section --}}
+        <div class="tw:mt-8 tw:overflow-x-auto">
+            <table class="tw:w-full tw:text-left tw:border-collapse">
                 <thead class="tw:border-t tw:border-slate-100">
-                    <tr class="tw:text-[10px] tw:font-bold tw:text-slate-500 tw:uppercase">
-                        <th class="tw:px-2 tw:py-4">R. No:</th>
-                        <th class="tw:px-2 tw:py-4">Application</th>
-                        <th class="tw:px-2 tw:py-4 tw:text-center">Enrolment Info</th>
-                        <th class="tw:px-2 tw:py-4 tw:text-center">Additional Info</th>
-                        <th class="tw:px-2 tw:py-4 tw:text-center">Progress Info</th>
-                        <th class="tw:px-2 tw:py-4 tw:text-right">Action</th>
+                    <tr class="tw:text-[10px] tw:font-bold tw:text-slate-400 tw:uppercase">
+                        <th class="tw:px-4 tw:py-4">R. No:</th>
+                        <th class="tw:px-4 tw:py-4">Application</th>
+                        <th class="tw:px-4 tw:py-4">Enrolment Info</th>
+                        <th class="tw:px-4 tw:py-4">Additional Info</th>
+                        <th class="tw:px-4 tw:py-4">Progress Info</th>
+                        <th class="tw:px-4 tw:py-4">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tw:divide-y tw:divide-slate-100">
+                    {{-- Row 1: Puran Chaulagain --}}
                     <tr>
-                        <td colspan="6" class="tw:py-20">
-                            <div class="tw:flex tw:flex-col tw:items-center">
-                                <div class="tw:mb-4">
-                                    {{-- Box Icon --}}
-                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="tw:text-slate-900">
-                                        <path d="M21 8V21H3V8" />
-                                        <path d="M21 8H3L5 3H19L21 8Z" />
-                                        <path d="M10 12H14" stroke-linecap="round" />
-                                        <path d="M12 15V15.01" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <p class="tw:text-slate-600 tw:text-sm tw:font-medium">
-                                    No Submitted Application Submitted. You can add applicant and submit application on their behalf.
-                                </p>
+                        <td class="tw:px-4 tw:py-6 tw:align-top tw:text-sm tw:text-blue-600 tw:font-medium">#714</td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:flex tw:flex-col tw:items-center tw:w-32">
+                                <img src="https://ui-avatars.com/api/?name=Puran+Chaulagain&background=random" class="tw:w-16 tw:h-16 tw:rounded tw:object-cover tw:mb-2" alt="Puran">
+                                <span class="tw:text-blue-600 tw:font-bold tw:text-sm tw:text-center">Puran Chaulagain</span>
                             </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:text-sm tw:space-y-1">
+                                <p><span class="tw:font-bold">Institution:</span> Fanshawe College</p>
+                                <p><span class="tw:font-bold">Program:</span> Construction Project Management</p>
+                                <p><span class="tw:font-bold">Session:</span> Fall/Sept 2024</p>
+                                <p><span class="tw:font-bold">Country:</span> Canada</p>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:text-sm tw:space-y-1">
+                                <p><span class="tw:font-bold">Application date:</span> 23 Dec 2023</p>
+                                <p><span class="tw:font-bold">Application fee:</span> CAD 0</p>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:flex tw:flex-col tw:gap-2">
+                                <span class="tw:bg-[#4ade80] tw:text-white tw:text-[11px] tw:px-3 tw:py-1 tw:rounded-full tw:font-medium tw:w-fit">Offer letter granted</span>
+                                <span class="tw:bg-[#4ade80] tw:text-white tw:text-[11px] tw:px-3 tw:py-1 tw:rounded-full tw:font-medium tw:w-fit">Ready for visa</span>
+                                <span class="tw:bg-[#f87171] tw:text-white tw:text-[11px] tw:px-3 tw:py-1 tw:rounded-full tw:font-medium tw:w-fit">Visa rejected</span>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top tw:text-right">
+                            <a href="#" class="tw:text-blue-600 tw:text-sm tw:font-medium hover:tw:underline">View application</a>
+                        </td>
+                    </tr>
+
+                    {{-- Row 2: Sushan Chand --}}
+                    <tr>
+                        <td class="tw:px-4 tw:py-6 tw:align-top tw:text-sm tw:text-blue-600 tw:font-medium">#413</td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:flex tw:flex-col tw:items-center tw:w-32">
+                                <img src="https://ui-avatars.com/api/?name=Sushan+Chand&background=random" class="tw:w-16 tw:h-16 tw:rounded tw:object-cover tw:mb-2" alt="Sushan">
+                                <span class="tw:text-blue-600 tw:font-bold tw:text-sm tw:text-center">Sushan Chand</span>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:text-sm tw:space-y-1">
+                                <p><span class="tw:font-bold">Institution:</span> Cambrian College</p>
+                                <p><span class="tw:font-bold">Program:</span> Project Management</p>
+                                <p><span class="tw:font-bold">Session:</span> Fall/Sept 2024</p>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:text-sm tw:space-y-1">
+                                <p><span class="tw:font-bold">Application date:</span> 02 Jun 2023</p>
+                                <p><span class="tw:font-bold">Application fee:</span> CAD 0</p>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top">
+                            <div class="tw:flex tw:flex-col tw:gap-2">
+                                <span class="tw:bg-[#4ade80] tw:text-white tw:text-[11px] tw:px-3 tw:py-1 tw:rounded-full tw:font-medium tw:w-fit">Offer letter granted</span>
+                                <span class="tw:bg-[#4ade80] tw:text-white tw:text-[11px] tw:px-3 tw:py-1 tw:rounded-full tw:font-medium tw:w-fit">Ready for visa</span>
+                                <span class="tw:bg-[#f87171] tw:text-white tw:text-[11px] tw:px-3 tw:py-1 tw:rounded-full tw:font-medium tw:w-fit">Visa rejected</span>
+                            </div>
+                        </td>
+                        <td class="tw:px-4 tw:py-6 tw:align-top tw:text-right">
+                            <a href="#" class="tw:text-blue-600 tw:text-sm tw:font-medium hover:tw:underline">View application</a>
                         </td>
                     </tr>
                 </tbody>

@@ -55,7 +55,7 @@
 
         <div class="tw:relative tw:z-10 tw:max-w-2xl">
             <h1 class="tw:text-2xl tw:font-bold tw:text-slate-900">
-                Welcome back, Binod
+                Welcome back, Sujana
             </h1>
             <p class="tw:mt-4 tw:text-slate-500 tw:text-sm tw:leading-relaxed">
                 We’re excited to have you on board. Explore top programs from leading universities and colleges, manage student applications with ease, and track commissions in real time. Together, let’s simplify the study abroad journey and help students succeed!

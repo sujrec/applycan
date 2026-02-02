@@ -30,4 +30,48 @@ class adminController extends Controller
     {
         return view('front.draft');
     }
+
+    public function submitted()
+    {
+        return view('front.submitted');
+    }
+
+    public function offers()
+    {
+        return view('front.offers');
+    }
+
+    public function deferred()
+    {
+        return view('front.deferred');
+    }
+
+    public function applied()
+    {
+        return view('front.applied');
+    }
+    public function refund()
+    {
+        return view('front.refund');
+    }
+
+    public function visagranted()
+    {
+        return view('front.visagranted');
+    }
+
+    public function archived()
+    {
+        return view('front.archived');
+    }
+
+    public function pending()
+    {
+        return view('front.pending');
+    }
+
+    public function completepayment()
+    {
+        return view('front.completepayment');
+    }
 }

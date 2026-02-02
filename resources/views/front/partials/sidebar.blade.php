@@ -1,15 +1,27 @@
-{{-- Sidebar (Your Provided Code) --}}
-<aside :class="sidebarOpen ? 'tw:translate-x-0' : 'tw:-translate-x-full lg:tw:translate-x-0'"
-    class="tw:fixed tw:inset-y-0 tw:left-0 tw:z-50 tw:w-64 tw:bg-[#111827] tw:transition-transform tw:duration-300 tw:ease-in-out lg:tw:relative lg:tw:translate-x-0 lg:tw:flex-shrink-0 tw:flex tw:flex-col tw:text-slate-300 tw:font-sans">
+{{-- Sidebar (Mobile: Toggle, Desktop: Always Open) --}}
+<aside x-data="{ isLargeScreen: window.innerWidth >= 1024 }" x-show="sidebarOpen || isLargeScreen"
+    @window:resize="
+        isLargeScreen = window.innerWidth >= 1024;
+        if (isLargeScreen) sidebarOpen = true; else sidebarOpen = false;"
+    class="lg:tw:relative lg:tw:flex-shrink-0 tw:fixed tw:inset-y-0 tw:left-0 tw:z-50 tw:w-64 tw:bg-[#111827] tw:transition-transform tw:duration-300 tw:ease-in-out lg:tw:translate-x-0 tw:flex tw:flex-col tw:text-slate-300 tw:font-sans"
+    :class="{
+        'tw:translate-x-0': sidebarOpen || isLargeScreen,
+        'tw:-translate-x-full': !sidebarOpen && !isLargeScreen
+    }"
+    x-transition:enter="tw:transition tw:ease-out tw:duration-300" x-transition:enter-start="tw:-translate-x-full"
+    x-transition:enter-end="tw:translate-x-0" x-transition:leave="tw:transition tw:ease-in tw:duration-300"
+    x-transition:leave-start="tw:translate-x-0" x-transition:leave-end="tw:-translate-x-full">
     <div class="tw:p-6 tw:pb-4 tw:flex tw:flex-col tw:items-center tw:relative">
+        <!-- Close Button (Mobile Only) -->
         <button @click="sidebarOpen = false"
-            class="tw:absolute tw:top-4 tw:right-4 tw:text-slate-400 hover:tw:text-white lg:tw:hidden">
+            class="tw:lg:hidden tw:absolute tw:top-4 tw:right-4 tw:text-slate-300 hover:tw:text-white tw:p-2 tw:rounded-lg hover:tw:bg-slate-800 tw:transition-colors"
+            aria-label="Close sidebar">
             <svg class="tw:w-6 tw:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
         <img src="{{ asset('images/applycan.png') }}" alt="ApplyCan" class="tw:h-12 tw:mb-4">
-        <h1 class="tw:text-white tw:text-xl tw:font-bold tw:tracking-tight">ApplyCan</h1>
+        {{-- <h1 class="tw:text-white tw:text-xl tw:font-bold tw:tracking-tight">ApplyCan</h1> --}}
     </div>
 
     <nav class="tw:flex-1 tw:px-3 tw:pb-10 tw:space-y-1">
@@ -70,46 +82,62 @@
                     <path d="M19 9l-7 7-7-7"></path>
                 </svg>
             </button>
-           <div x-show="open" class="tw:mt-1 tw:space-y-1 tw:pl-10 tw:pr-3">
-                <a href="{{ route('draft') }}" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+            <div x-show="open" class="tw:mt-1 tw:space-y-1 tw:pl-10 tw:pr-3">
+                <a href="{{ route('draft') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Draft</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
                 </a>
                 {{-- Submitted --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                <a href="{{ route('submitted') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Submitted</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
                 </a>
                 {{-- Offers --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                <a href="{{ route('offers') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Offers</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
                 </a>
                 {{-- Deferral --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                <a href="{{ route('deferred') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Deferral</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
                 </a>
-               {{-- Applied & awaiting --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                {{-- Applied & awaiting --}}
+                <a href="{{ route('applied') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Applied & awaiting</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
                 </a>
-                 {{-- Refund --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                {{-- Refund --}}
+                <a href="{{ route('refund') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Refund</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">2</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">2</span>
                 </a>
-                    {{-- Visa granted --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                {{-- Visa granted --}}
+                <a href="{{ route('visagranted') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Visa granted</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">9</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">9</span>
                 </a>
 
-                    {{-- Archived --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                {{-- Archived --}}
+                <a href="{{ route('archived') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Archived</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">19</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">19</span>
                 </a>
             </div>
         </div>
@@ -120,28 +148,36 @@
                 class="tw:w-full tw:flex tw:items-center tw:justify-between tw:px-3 tw:py-2 tw:text-sm tw:font-medium hover:tw:bg-slate-800 tw:rounded-md">
                 <div class="tw:flex tw:items-center">
                     {{-- Finance Icon --}}
-                    <svg class="tw:w-5 tw:h-5 tw:mr-3 tw:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    <svg class="tw:w-5 tw:h-5 tw:mr-3 tw:text-slate-500" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                        </path>
                     </svg>
                     Finance
                 </div>
-                <svg :class="open ? 'tw:rotate-180' : ''" class="tw:w-4 tw:h-4 tw:text-slate-500 tw:transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg :class="open ? 'tw:rotate-180' : ''"
+                    class="tw:w-4 tw:h-4 tw:text-slate-500 tw:transition-transform" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M19 9l-7 7-7-7"></path>
                 </svg>
             </button>
             <div x-show="open" class="tw:mt-1 tw:space-y-1 tw:pl-10 tw:pr-3">
                 {{-- Pending Payment --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                <a href="{{ route('pending') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Pending payment</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">0</span>
                 </a>
                 {{-- Complete Payment --}}
-                <a href="#" class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
+                <a href="{{ route('completepayment') }}"
+                    class="tw:flex tw:justify-between tw:items-center tw:py-1.5 tw:px-2 tw:text-sm tw:text-slate-400 hover:tw:text-white hover:tw:bg-slate-800 tw:rounded">
                     <span>Complete payment</span>
-                    <span class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">14</span>
+                    <span
+                        class="tw:bg-[#132021] tw:text-[#00a34c] tw:px-2 tw:rounded tw:text-[11px] tw:font-bold">14</span>
                 </a>
             </div>
         </div>
     </nav>
 </aside>
-</div>

@@ -1,3 +1,11 @@
 @import "tailwindcss" prefix(tw);
 
 @custom-variant dark (&:where(.tw\:dark, .tw\:dark *));
+
+/* Mobile-only override for sidebar layout */
+@media (max-width: 1023px) {
+  .app-main {
+    margin-left: 0 !important;
+  }
+}
+
